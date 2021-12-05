@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <!--id标识对象，class类的全限定名 -->
+    <bean id="accountDao" class="com.vic.transfer.dao.impl.JdbcAccountDaoImpl"/>
+    <bean id="transferService" class="com.vic.transfer.service.impl.TransferServiceImpl">
+        <property name="AccountDao" ref="accountDao"></property>
+    </bean>
+</beans>
