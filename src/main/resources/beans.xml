@@ -4,5 +4,6 @@
     <bean id="accountDao" class="com.vic.transfer.dao.impl.JdbcAccountDaoImpl"/>
     <bean id="transferService" class="com.vic.transfer.service.impl.TransferServiceImpl">
         <property name="AccountDao" ref="accountDao"></property>
+
     </bean>
 </beans>
