@@ -2,6 +2,7 @@ package com.vic.transfer.servlet;
 
 import com.vic.transfer.core.model.Result;
 import com.vic.transfer.factory.BeanFactory;
+import com.vic.transfer.factory.ProxyFactory;
 import com.vic.transfer.service.TransferService;
 import com.vic.transfer.utils.JsonUtils;
 
@@ -16,14 +17,16 @@ import java.io.IOException;
  * @author vic
  * @date 2021/12/5 2:37 下午
  */
-@WebServlet(name="transferServlet",urlPatterns = "/transferServlet")
+@WebServlet(name = "transferServlet", urlPatterns = "/transferServlet")
 public class TransferServlet extends HttpServlet {
 
-    private TransferService transferService = (TransferService) BeanFactory.getBean("transferService") ;
+    private TransferService transferService =
+            (TransferService) ((ProxyFactory) BeanFactory.getBean("proxyFactory")).getJdkProxy(BeanFactory.getBean(
+                    "transferService"));
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+        doPost(req, resp);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class TransferServlet extends HttpServlet {
         try {
 
             // 2. 调用service层方法
-            transferService.transfer(fromCardNo,toCardNo,money);
+            transferService.transfer(fromCardNo, toCardNo, money);
             result.setStatus("200");
         } catch (Exception e) {
             e.printStackTrace();

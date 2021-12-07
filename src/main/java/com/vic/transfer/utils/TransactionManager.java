@@ -10,41 +10,47 @@ import java.sql.SQLException;
  */
 public class TransactionManager {
 
-    private volatile static TransactionManager instance;
+    private ConnectionUtils connectionUtils;
 
-    public static TransactionManager getInstance() {
-        if (instance == null) {
-            synchronized (TransactionManager.class) {
-                if (instance == null) {
-                    instance = new TransactionManager();
-                }
-            }
-        }
-        return instance;
+    public void setConnectionUtils(ConnectionUtils connectionUtils) {
+        this.connectionUtils = connectionUtils;
     }
 
-    private TransactionManager() {
-    }
+//    private volatile static TransactionManager instance;
+//
+//    public static TransactionManager getInstance() {
+//        if (instance == null) {
+//            synchronized (TransactionManager.class) {
+//                if (instance == null) {
+//                    instance = new TransactionManager();
+//                }
+//            }
+//        }
+//        return instance;
+//    }
+//
+//    private TransactionManager() {
+//    }
 
 
     /**
      * 开启
      */
     public void begin() throws SQLException {
-        ConnectionUtils.getInstance().getCurrentThreadConnection().setAutoCommit(false);
+        connectionUtils.getCurrentThreadConnection().setAutoCommit(false);
     }
 
     /**
      * 提交
      */
     public void commit() throws SQLException {
-        ConnectionUtils.getInstance().getCurrentThreadConnection().commit();
+        connectionUtils.getCurrentThreadConnection().commit();
     }
 
     /**
      * 回滚
      */
     public void rollback() throws SQLException {
-        ConnectionUtils.getInstance().getCurrentThreadConnection().rollback();
+        connectionUtils.getCurrentThreadConnection().rollback();
     }
 }
