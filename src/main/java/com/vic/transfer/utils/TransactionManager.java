@@ -1,5 +1,8 @@
 package com.vic.transfer.utils;
 
+import com.vic.transfer.annotation.Autowired;
+import com.vic.transfer.annotation.Component;
+
 import java.sql.SQLException;
 
 /**
@@ -8,8 +11,10 @@ import java.sql.SQLException;
  * <p>
  * 负责手动事务开启、提交、回滚
  */
+@Component
 public class TransactionManager {
 
+    @Autowired
     private ConnectionUtils connectionUtils;
 
     public void setConnectionUtils(ConnectionUtils connectionUtils) {

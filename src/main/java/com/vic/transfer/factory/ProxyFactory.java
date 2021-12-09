@@ -1,5 +1,7 @@
 package com.vic.transfer.factory;
 
+import com.vic.transfer.annotation.Autowired;
+import com.vic.transfer.annotation.Component;
 import com.vic.transfer.utils.TransactionManager;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.InvocationHandler;
@@ -10,8 +12,10 @@ import java.lang.reflect.Proxy;
  * @author vic
  * @date 2021/12/6 11:11 下午
  */
+@Component
 public class ProxyFactory {
 
+    @Autowired
     private TransactionManager transactionManager;
 
     public void setTransactionManager(TransactionManager transactionManager) {
@@ -46,7 +50,6 @@ public class ProxyFactory {
                 result = method.invoke(o, args);
                 transactionManager.commit();
             } catch (Exception e) {
-                e.printStackTrace();
                 transactionManager.rollback();
                 throw e;
             }

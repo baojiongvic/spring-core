@@ -6,5 +6,13 @@ package com.vic.transfer.service;
  */
 public interface TransferService {
 
+    /**
+     * 转换
+     *
+     * @param fromCardNo
+     * @param toCardNo
+     * @param money      钱
+     * @throws Exception 异常
+     */
     void transfer(String fromCardNo,String toCardNo,int money) throws Exception;
 }

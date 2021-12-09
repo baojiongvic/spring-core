@@ -20,9 +20,7 @@ import java.io.IOException;
 @WebServlet(name = "transferServlet", urlPatterns = "/transferServlet")
 public class TransferServlet extends HttpServlet {
 
-    private TransferService transferService =
-            (TransferService) ((ProxyFactory) BeanFactory.getBean("proxyFactory")).getJdkProxy(BeanFactory.getBean(
-                    "transferService"));
+    private TransferService transferService = (TransferService) BeanFactory.getBean("transferService");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

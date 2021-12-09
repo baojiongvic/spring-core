@@ -1,9 +1,10 @@
 package com.vic.transfer.dao.impl;
 
+import com.vic.transfer.annotation.Autowired;
+import com.vic.transfer.annotation.Component;
 import com.vic.transfer.dao.AccountDao;
 import com.vic.transfer.dao.entity.Account;
 import com.vic.transfer.utils.ConnectionUtils;
-import com.vic.transfer.utils.DruidUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +14,10 @@ import java.sql.ResultSet;
  * @author vic
  * @date 2021/12/5 2:39 下午
  */
+@Component
 public class JdbcAccountDaoImpl implements AccountDao {
 
+    @Autowired
     private ConnectionUtils connectionUtils;
 
     public void setConnectionUtils(ConnectionUtils connectionUtils) {
@@ -40,7 +43,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
 
         resultSet.close();
         preparedStatement.close();
-        //con.close();
 
         return account;
     }
@@ -58,7 +60,6 @@ public class JdbcAccountDaoImpl implements AccountDao {
         int i = preparedStatement.executeUpdate();
 
         preparedStatement.close();
-        //con.close();
         return i;
     }
 }

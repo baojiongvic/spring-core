@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans>
     <!--id标识对象，class类的全限定名 -->
-    <bean id="accountDao" class="com.vic.transfer.dao.impl.JdbcAccountDaoImpl">
-        <property name="ConnectionUtils" ref="connectionUtils"/>
-    </bean>
-    <bean id="transferService" class="com.vic.transfer.service.impl.TransferServiceImpl">
-        <property name="AccountDao" ref="accountDao"/>
-    </bean>
-    <bean id="connectionUtils" class="com.vic.transfer.utils.ConnectionUtils"/>
+    <!--    <bean id="accountDao" class="com.vic.transfer.dao.impl.JdbcAccountDaoImpl">-->
+    <!--        <property name="ConnectionUtils" ref="connectionUtils"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="transferService" class="com.vic.transfer.service.impl.TransferServiceImpl">-->
+    <!--        <property name="AccountDao" ref="accountDao"/>-->
+    <!--    </bean>-->
+    <!--    <bean id="connectionUtils" class="com.vic.transfer.utils.ConnectionUtils"/>-->
 
-    <bean id="transactionManager" class="com.vic.transfer.utils.TransactionManager">
-        <property name="ConnectionUtils" ref="connectionUtils"/>
-    </bean>
+    <!--    <bean id="transactionManager" class="com.vic.transfer.utils.TransactionManager">-->
+    <!--        <property name="ConnectionUtils" ref="connectionUtils"/>-->
+    <!--    </bean>-->
 
-    <bean id="proxyFactory" class="com.vic.transfer.factory.ProxyFactory">
-        <property name="TransactionManager" ref="transactionManager"/>
-    </bean>
+    <!--    <bean id="proxyFactory" class="com.vic.transfer.factory.ProxyFactory">-->
+    <!--        <property name="TransactionManager" ref="transactionManager"/>-->
+    <!--    </bean>-->
+
+<!--    扫描模式-->
+    <component-scan base-package="com.vic.transfer"/>
 </beans>
